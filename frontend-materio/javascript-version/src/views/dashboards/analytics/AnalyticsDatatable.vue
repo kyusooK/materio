@@ -131,7 +131,7 @@ const usreList = data
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VTable
       :headers="headers"
       :items="usreList"
@@ -156,7 +156,6 @@ const usreList = data
           v-for="row in data"
           :key="row.fullName"
         >
-          <!-- name -->
 
           <td>
             <div class="d-flex flex-column">
@@ -169,7 +168,6 @@ const usreList = data
           <td v-text="row.start_date" />
           <td v-text="`$${row.salary}`" />
           <td v-text="row.age" />
-          <!-- status -->
           <td>
             <VChip
               small
@@ -182,5 +180,5 @@ const usreList = data
         </tr>
       </tbody>
     </VTable>
-  </VCard>
+  </VCard> -->
 </template>

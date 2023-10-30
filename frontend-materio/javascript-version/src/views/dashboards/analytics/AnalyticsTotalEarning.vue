@@ -29,7 +29,7 @@ const earnings = [
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VCardItem>
       <VCardTitle>Total Earning</VCardTitle>
 
@@ -99,7 +99,7 @@ const earnings = [
         </VListItem>
       </VList>
     </VCardText>
-  </VCard>
+  </VCard> -->
 </template>
 
 <style lang="scss" scoped>

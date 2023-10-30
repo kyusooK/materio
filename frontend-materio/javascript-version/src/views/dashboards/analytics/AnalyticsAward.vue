@@ -11,7 +11,7 @@ const triangleBg = computed(() => {
 </script>
 
 <template>
-  <VCard
+  <!-- <VCard
     title="Congratulations John! 🎉"
     subtitle="Best seller of the month"
     class="position-relative"
@@ -26,18 +26,16 @@ const triangleBg = computed(() => {
       </VBtn>
     </VCardText>
 
-    <!-- Triangle Background -->
     <VImg
       :src="triangleBg"
       class="triangle-bg flip-in-rtl"
     />
 
-    <!-- Trophy -->
     <VImg
       :src="trophy"
       class="trophy"
     />
-  </VCard>
+  </VCard> -->
 </template>
 
 <style lang="scss">

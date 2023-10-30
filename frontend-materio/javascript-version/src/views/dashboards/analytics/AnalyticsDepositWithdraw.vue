@@ -77,7 +77,7 @@ const withdraws = [
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VRow no-gutters>
       <VCol
         cols="12"
@@ -186,7 +186,7 @@ const withdraws = [
         </VCardText>
       </VCol>
     </VRow>
-  </VCard>
+  </VCard> -->
 </template>
 
 <style lang="scss" scoped>

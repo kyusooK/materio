@@ -1,114 +1,133 @@
-<script setup>
-import AnalyticsAward from '@/views/dashboards/analytics/AnalyticsAward.vue'
-import AnalyticsBarCharts from '@/views/dashboards/analytics/AnalyticsBarCharts.vue'
-import AnalyticsDatatable from '@/views/dashboards/analytics/AnalyticsDatatable.vue'
-import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepositWithdraw.vue'
-import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
-import AnalyticsTotalEarning from '@/views/dashboards/analytics/AnalyticsTotalEarning.vue'
-import AnalyticsTotalProfitLineCharts from '@/views/dashboards/analytics/AnalyticsTotalProfitLineCharts.vue'
-import AnalyticsTransactions from '@/views/dashboards/analytics/AnalyticsTransactions.vue'
-import AnalyticsWeeklyOverview from '@/views/dashboards/analytics/AnalyticsWeeklyOverview.vue'
-import CardStatisticsVertical from '@core/components/CardStatisticsVertical.vue'
+<template>
+  <v-app id="inspire">
+        <Snackbar/>
+        <v-col cols="10" style="margin: 0px; padding: 0px;">
+            <v-main>
+                <v-container v-if="urlPath" style="max-width:100vw !important;" class="py-8 px-6 mt-10" fluid>
+                    <router-view></router-view>
+                </v-container>
+                <v-container v-else class="py-8 px-6 mt-10" fluid>
+                    <v-row>
+                        <v-card
+                            v-for="(card, index) in cards"
+                            :key="index"
+                            class="mx-auto"
+                            style="height:300px; width:300px; margin-bottom:20px;"
+                            outlined
+                        >
+                            <v-list-item>
+                                <v-list-item-avatar class="mx-auto" size="80" style="margin-top:80px;">
+                                    <v-icon color="primary" size="64">mdi-apps</v-icon>
+                                </v-list-item-avatar>
+                            </v-list-item>
+                            
+                            <v-card-actions>
+                            <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn
+                                        v-on="on"
+                                        class="mx-auto"
+                                        outlined
+                                        rounded
+                                        :to="card.link"
+                                        @click="changeUrl()"
+                                        style="font-weight:500; font-size:20px; border:solid 2px; max-width:250px; overflow:hidden"
+                                    >
+                                        {{ card.text }}
+                                    </v-btn>
+                                </template>
+                                <span>{{ card.text }}</span>
+                            </v-tooltip>
+                            </v-card-actions>
+                        </v-card>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-col>
+    </v-app>
+</template>
 
-const totalProfit = {
-  title: 'Total Profit',
-  color: 'secondary',
-  icon: 'mdi-poll',
-  stats: '$25.6k',
-  change: 42,
-  subtitle: 'Weekly Project',
-}
-const newProject = {
-  title: 'New Project',
-  color: 'primary',
-  icon: 'mdi-briefcase-variant-outline',
-  stats: '862',
-  change: -18,
-  subtitle: 'Yearly Project',
-}
+<script>
+import { ref, onMounted, computed } from 'vue';
+
+export default {
+  name: 'App',
+  data: () => ({
+    basic: [
+      { key: 'companies', name: 'Company', url: '/companies' },
+      { key: 'inventory', name: 'Inventory', url: '/inventories' },
+      { key: 'ranks', name: 'Rank', url: '/ranks' },
+    ],
+    useComponent: "",
+    drawer: true,
+    components: {},
+    sideBar: true,
+    urlPath: null,
+    menus: [
+      {
+        id: 'basic',
+        title: 'Basic',
+        icon: 'ri:home-6-line',
+        items: [
+          { key: 'companies', url: '/companies', name: 'Company' },
+          { key: 'inventory', url: '/inventories', name: 'Inventory' },
+          { key: 'sales', url: '/sales', name: 'Sales' },
+        ],
+      },
+    ],
+    cards: [
+      {
+        text: 'Company',
+        link: '/companies',
+      },
+      {
+        text: 'Inventory',
+        link: '/inventories',
+      },
+      {
+        text: 'Rank',
+        link: '/finance',
+      },
+    ],
+    activeMenu: null,
+  }),
+
+  async created() {
+    var path = document.location.href.split("#/")
+    this.urlPath = path[1];
+    },
+
+  mounted() {
+    var me = this;
+    me.components = this.$ManagerLists;
+  },
+  computed: {
+      activeMenuItems() {
+        const activeMenu = this.menus.find(menu => menu.id === this.activeMenu);
+        return activeMenu ? activeMenu.items : [];
+      }
+  },
+  methods: {
+    changeMenu(menuId) {
+      this.activeMenu = this.activeMenu === menuId ? null : menuId;
+    },
+    changePath(event) {
+      let targetUrl = event.currentTarget.getAttribute('data-to');
+      this.$router.push(targetUrl);
+    },
+    openSideBar(){
+      this.sideBar = !this.sideBar
+    },
+    changeUrl() {
+      var path = document.location.href.split("#/")
+      this.urlPath = path[1];
+    },
+    goHome() {
+      this.urlPath = null;
+    },
+  }
+};
+
 </script>
 
-<template>
-  <VRow class="match-height">
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsAward />
-    </VCol>
 
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsTransactions />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsWeeklyOverview />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsTotalEarning />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <VRow class="match-height">
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <AnalyticsTotalProfitLineCharts />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <CardStatisticsVertical v-bind="totalProfit" />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <CardStatisticsVertical v-bind="newProject" />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <AnalyticsBarCharts />
-        </VCol>
-      </VRow>
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsSalesByCountries />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsDepositWithdraw />
-    </VCol>
-
-    <VCol cols="12">
-      <AnalyticsDatatable />
-    </VCol>
-  </VRow>
-</template>

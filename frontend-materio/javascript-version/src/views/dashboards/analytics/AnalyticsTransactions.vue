@@ -28,7 +28,7 @@ const statistics = [
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VCardItem>
       <VCardTitle>Transactions</VCardTitle>
 
@@ -87,5 +87,5 @@ const statistics = [
         </VCol>
       </VRow>
     </VCardText>
-  </VCard>
+  </VCard> -->
 </template>

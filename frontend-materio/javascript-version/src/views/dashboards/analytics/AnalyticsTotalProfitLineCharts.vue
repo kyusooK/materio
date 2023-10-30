@@ -72,7 +72,7 @@ const chartOptions = computed(() => {
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VCardText>
       <h6 class="text-h6">
         $86.4k
@@ -88,5 +88,5 @@ const chartOptions = computed(() => {
         Total Profit
       </p>
     </VCardText>
-  </VCard>
+  </VCard> -->
 </template>

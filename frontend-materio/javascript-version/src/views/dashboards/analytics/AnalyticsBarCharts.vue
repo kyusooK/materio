@@ -76,7 +76,7 @@ const chartOptions = computed(() => {
 </script>
 
 <template>
-  <VCard>
+  <!-- <VCard>
     <VCardText>
       <h6 class="text-h6">
         2,856
@@ -92,5 +92,5 @@ const chartOptions = computed(() => {
         Sessions
       </p>
     </VCardText>
-  </VCard>
+  </VCard> -->
 </template>
