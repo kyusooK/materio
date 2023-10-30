@@ -71,7 +71,7 @@ const newProject = {
           <AnalyticsTotalProfitLineCharts />
         </VCol>
 
-        <VCol
+        <!-- <VCol
           cols="12"
           sm="6"
         >
@@ -83,7 +83,7 @@ const newProject = {
           sm="6"
         >
           <CardStatisticsVertical v-bind="newProject" />
-        </VCol>
+        </VCol> -->
 
         <VCol
           cols="12"

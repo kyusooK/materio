@@ -13,19 +13,12 @@ import { Icon } from '@iconify/vue';
 
 axios.defaults.baseURL = ''
 
-const vuetify = createVuetify({
-    components,
-    directives,
-})
-
-
 
 loadFonts()
 
 const app = createApp(App)
 
 app.config.globalProperties.$axios = axios;
-app.config.globalProperties.$fixUrl = fixUrl;
 
 app.use(vuetify)
 
