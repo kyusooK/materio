@@ -20,13 +20,6 @@
         icon: { icon: 'mdi-home-outline' }
       }"
     />
-    <VerticalNavLink
-      :item="{
-        title: 'Tables',
-        to: 'tables',
-        icon: { icon: 'mdi-table' }
-      }"
-    />
     <v-list :opened="open" style="background-color: #F4F5FA;">
       <template v-slot:activator="{ props }">
         <v-list-item

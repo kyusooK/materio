@@ -16,9 +16,7 @@
                             outlined
                         >
                             <v-list-item>
-                                <v-list-item-avatar class="mx-auto" size="80" style="margin-top:80px;">
                                     <v-icon style="margin-top: 30%; margin-left: 37.5%;" color="primary" size="64">mdi-apps</v-icon>
-                                </v-list-item-avatar>
                             </v-list-item>
                             
                             <v-card-actions>
