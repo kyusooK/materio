@@ -1,29 +1,10 @@
-<script setup>
-import upgradeBannerDark from '@/assets/images/pro/upgrade-banner-dark.png'
-import upgradeBannerLight from '@/assets/images/pro/upgrade-banner-light.png'
-import logo from '@/assets/logo.svg?raw'
-import {
-  VerticalNavLink,
-  VerticalNavSectionTitle,
-} from '@layouts'
-import { useTheme } from 'vuetify'
-
-const vuetifyTheme = useTheme()
-const upgradeBanner = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
-})
-</script>
-
 <template>
-  <!-- 👉 Nav header -->
   <div class="nav-header">
     <RouterLink
       to="/"
       class="app-logo d-flex align-center gap-x-3 app-title-wrapper"
     >
-      <!-- ℹ️ You can also use img tag or VImg here -->
-      <div v-html="logo" />
-
+      <div v-html="logo"></div>
       <Transition name="vertical-nav-app-title">
         <h1 class="font-weight-semibold leading-normal text-xl text-uppercase">
           Materio
@@ -31,8 +12,6 @@ const upgradeBanner = computed(() => {
       </Transition>
     </RouterLink>
   </div>
-
-  <!-- 👉 Nav items -->
   <ul>
     <VerticalNavLink
       :item="{
@@ -41,66 +20,6 @@ const upgradeBanner = computed(() => {
         icon: { icon: 'mdi-home-outline' }
       }"
     />
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Account Settings',
-        to: 'account-settings',
-        icon: { icon: 'mdi-account-cog-outline' }
-      }"
-    /> -->
-    <!-- 👉 Pages -->
-    <!-- <VerticalNavSectionTitle :item="{ heading: 'Pages' }" /> -->
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Login',
-        to: 'login',
-        target: '_blank',
-        icon: { icon: 'mdi-login' }
-      }"
-    /> -->
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Register',
-        to: 'register',
-        target: '_blank',
-        icon: { icon: 'mdi-account-plus-outline' }
-      }"
-    /> -->
-
-    <!-- ℹ️ This path doesn't exist so 404 route will catch this undefined path -->
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Error',
-        to: { path: '/error' },
-        target: '_blank',
-        icon: { icon: 'mdi-alert-circle-outline' }
-      }"
-    /> -->
-
-    <!-- 👉 User Interface -->
-    <!-- <VerticalNavSectionTitle :item="{ heading: 'User Interface' }" /> -->
-
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Typography',
-        to: 'typography',
-        icon: { icon: 'mdi-alpha-t-box-outline' }
-      }"
-    /> -->
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Icons',
-        to: 'icons',
-        icon: { icon: 'mdi-eye-outline' }
-      }"
-    /> -->
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Cards',
-        to: 'card-basic',
-        icon: { icon: 'mdi-credit-card-outline' }
-      }"
-    /> -->
     <VerticalNavLink
       :item="{
         title: 'Tables',
@@ -108,50 +27,105 @@ const upgradeBanner = computed(() => {
         icon: { icon: 'mdi-table' }
       }"
     />
-    <!-- <VerticalNavLink
-      :item="{
-        title: 'Form Layouts',
-        to: 'form-layouts',
-        icon: { icon: 'mdi-form-select' }
-      }"
-    /> -->
-  </ul>
+    <v-list :opened="open" style="background-color: #F4F5FA;">
+      <template v-slot:activator="{ props }">
+        <v-list-item
+          v-bind="props"
+          prepend-icon="mdi-account-circle"
+          title="Users"
+        ></v-list-item>
+      </template>
 
-  <!-- 👉 illustration -->
-  <a
-    href="https://themeselection.com/item/materio-vuetify-vuejs-admin-template"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      :src="upgradeBanner"
-      alt="upgrade-banner"
-      transition="scale-transition"
-      class="upgrade-banner mx-auto"
-      style="max-width: 230px"
-    >
-  </a>
+      <v-list-group value="Basic">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            style="margin-left: 10px;"
+            v-bind="props"
+            title="Basic"
+          ></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="item in basic"
+          :key="item.key"
+          :title="item.name"
+          :value="item.name"
+          :to="item.url"
+        ></v-list-item>
+      </v-list-group>
+
+      <v-list-group value="Inventory">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            style="margin-left: 10px;"
+            v-bind="props"
+            title="Inventory"
+          ></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="item in inventory"
+          :key="item.key"
+          :title="item.name"
+          :value="item.name"
+          :to="item.url"
+        ></v-list-item>
+      </v-list-group>
+      <v-list-group value="Sales">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            style="margin-left: 10px;"
+            v-bind="props"
+            title="Sales"
+          ></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="item in sales"
+          :key="item.key"
+          :title="item.name"
+          :value="item.name"
+          :to="item.url"
+        ></v-list-item>
+      </v-list-group>
+    </v-list>
+  </ul>
 </template>
 
-<style lang="scss">
-// .v-navigation-drawer {
-//   height: 100%;
+<script setup>
+import logo from '@/assets/logo.svg?raw'
+import { VerticalNavLink, VerticalNavSectionTitle,} from '@layouts'
+import { ref } from 'vue';
+import { useTheme } from 'vuetify';
 
-//   .v-navigation-drawer__content {
-//     display: flex;
-//     flex-direction: column;
+const vuetifyTheme = useTheme();
 
-//     > ul {
-//       flex-grow: 1;
-//     }
-//   }
-// }
+const urlPath = null;
+const sideBar = true;
+const drawer = true;
+const open = ['Users'];
 
-.upgrade-banner {
-  margin-top: auto;
-  // position: absolute;
-  // bottom: 13px;
-  // left: 50%;
-  // transform: translateX(-50%);
+const basic = [
+  { key: 'companies', url: '/companies', name: '회사' },
+  { key: 'products', url: '/products', name: '상품' },
+];
+const inventory = [
+  {key: 'inventories', url: '/inventories', name: '재고'}
+];
+const sales = [
+  {key: 'sales', url: '/sales', name: '수주'}
+];
+
+function changeUrl() {
+  const path = document.location.href.split("#/");
+  urlPath.value = path[1];
 }
+
+function goHome() {
+  urlPath.value = null;
+}
+</script>
+
+<style lang="scss">
+
 </style>

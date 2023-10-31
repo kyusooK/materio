@@ -17,7 +17,7 @@
                         >
                             <v-list-item>
                                 <v-list-item-avatar class="mx-auto" size="80" style="margin-top:80px;">
-                                    <v-icon color="primary" size="64">mdi-apps</v-icon>
+                                    <v-icon style="margin-top: 30%; margin-left: 37.5%;" color="primary" size="64">mdi-apps</v-icon>
                                 </v-list-item-avatar>
                             </v-list-item>
                             
@@ -31,7 +31,7 @@
                                         rounded
                                         :to="card.link"
                                         @click="changeUrl()"
-                                        style="font-weight:500; font-size:20px; border:solid 2px; max-width:250px; overflow:hidden"
+                                        style="font-weight:500; font-size:20px; border:solid 2px; max-width:250px; overflow:hidden; margin-top: 10%;"
                                     >
                                         {{ card.text }}
                                     </v-btn>
@@ -53,42 +53,47 @@ import { ref, onMounted, computed } from 'vue';
 export default {
   name: 'App',
   data: () => ({
-    basic: [
-      { key: 'companies', name: 'Company', url: '/companies' },
-      { key: 'inventory', name: 'Inventory', url: '/inventories' },
-      { key: 'ranks', name: 'Rank', url: '/ranks' },
-    ],
     useComponent: "",
     drawer: true,
     components: {},
     sideBar: true,
     urlPath: null,
     menus: [
-      {
-        id: 'basic',
-        title: 'Basic',
-        icon: 'ri:home-6-line',
-        items: [
-          { key: 'companies', url: '/companies', name: 'Company' },
-          { key: 'inventory', url: '/inventories', name: 'Inventory' },
-          { key: 'sales', url: '/sales', name: 'Sales' },
+            { id: 'basic', title: '기준정보',
+                items: [
+                    { key: 'companies', url: '/companies', name: '회사' },
+                    { key: 'products', url: '/products', name: '상품정보' },
+                ]
+            },
+            { id: 'inventory', title: '재고',
+                items: [
+                    { key: 'inventories', url: '/inventories', name: 'Inventory' },
+                ]
+            },
+            { id: 'sales', title: '수주',
+                items: [
+                    { key: 'salesOrders', url: '/salesOrders', name: '수주' },
+                ]
+            },
         ],
-      },
-    ],
-    cards: [
-      {
-        text: 'Company',
-        link: '/companies',
-      },
-      {
-        text: 'Inventory',
-        link: '/inventories',
-      },
-      {
-        text: 'Rank',
-        link: '/finance',
-      },
-    ],
+        cards: [
+            {
+                text: "회사",
+                link: "/companies",
+            },
+            {
+                text: "상품정보",
+                link: "/products",
+            },
+            {
+                text: "재고",
+                link: "/inventories",
+            },
+            {
+                text: "수주",
+                link: "/salesOrders",
+            },
+        ],
     activeMenu: null,
   }),
 

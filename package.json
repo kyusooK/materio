@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "eslint-plugin-vuetify": "^2.0.5"
+  }
+}

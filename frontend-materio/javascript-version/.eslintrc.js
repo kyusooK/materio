@@ -9,6 +9,8 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:promise/recommended',
     'plugin:sonarjs/recommended',
+    'plugin:vue/base',
+    'plugin:vuetify/base'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {

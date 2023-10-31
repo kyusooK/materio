@@ -111,6 +111,7 @@
 <script>
 import BaseGrid from './components/base-ui/BaseGrid'
 
+
 export default {
     name: "App",
     mixins:[BaseGrid],
@@ -125,7 +126,6 @@ export default {
                 items: [
                     { key: 'companies', url: '/companies', name: '회사' },
                     { key: 'products', url: '/products', name: '상품정보' },
-                    { key: '', url: '/', name: '' },
                 ]
             },
             { id: 'inventory', title: '재고',
@@ -147,10 +147,6 @@ export default {
             {
                 text: "상품정보",
                 link: "/products",
-            },
-            {
-                text: "",
-                link: "/",
             },
             {
                 text: "Inventory",
