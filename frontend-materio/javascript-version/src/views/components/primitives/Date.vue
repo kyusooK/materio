@@ -26,17 +26,17 @@
                         scrollable
                 >
                     <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="menu = false">
-                        Cancel
+                    <v-btn text color="primary" @click="resetDate()">
+                        Reset
                     </v-btn>
-                    <v-btn text color="primary" @click="$refs.menu.save(date)">
+                    <v-btn text color="primary" @click="setDate(date)">
                         OK
                     </v-btn>
                 </v-date-picker>
-            </v-menu>
+            </VMenu>
         </div>
         <div v-else>
-            {{label}} :  {{value}}
+            \{{label}} :  \{{value}}
         </div>
     </div>
 </template>
@@ -49,6 +49,7 @@
         props: {
             modelValue: Object,
             editMode: Boolean,
+            label: String,
         },
         data: () => ({
             menu: false,
@@ -56,8 +57,11 @@
         }),
         created() {
             if(!this.modelValue) {
+                this.date = null;
                 this.value = this.date;
             }
+        },
+        mounted() {
         },
         watch: {
             value() {
@@ -67,6 +71,15 @@
         methods:{
             change(){
                 this.$emit("update:modelValue", this.value);
+            },
+            resetDate(){
+                this.date = null;
+                this.value = this.date
+                this.setDate(this.value)
+            },
+            setDate(date){
+                this.$refs.menu.save(date)
+                this.$emit("update:modelValue", date);
             }
         }
     }
