@@ -453,6 +453,21 @@
     "@fullcalendar/core" "~5.11.5"
     tslib "^2.1.0"
 
+"@googlemaps/js-api-loader@^1.16.2":
+  version "1.16.2"
+  resolved "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.16.2.tgz"
+  integrity sha512-psGw5u0QM6humao48Hn4lrChOM2/rA43ZCm3tKK9qQsEj1/VzqkCqnvGfEOshDbBQflydfaRovbKwZMF4AyqbA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+
+"@googlemaps/markerclusterer@^2.4.0":
+  version "2.5.0"
+  resolved "https://registry.npmjs.org/@googlemaps/markerclusterer/-/markerclusterer-2.5.0.tgz"
+  integrity sha512-WpHLCZxP7QmB4Hc5kyODGdTfJPsZiOIbcvbYhcS/VeiRNDVjf6CRQ8ViQjwrG5OySC66rtOdj4RVhUXsd1tNTQ==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    supercluster "^8.0.1"
+
 "@humanwhocodes/config-array@^0.11.11":
   version "0.11.12"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.12.tgz"
@@ -3201,6 +3216,11 @@ jwt-decode@^3.1.2:
   resolved "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
+kdbush@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/kdbush/-/kdbush-4.0.2.tgz"
+  integrity sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==
+
 keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz"
@@ -4669,6 +4689,13 @@ stylelint@^14.12.0, stylelint@^14.4.0, "stylelint@^14.5.1 || ^15.0.0", stylelint
     v8-compile-cache "^2.3.0"
     write-file-atomic "^4.0.2"
 
+supercluster@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.npmjs.org/supercluster/-/supercluster-8.0.1.tgz"
+  integrity sha512-IiOea5kJ9iqzD2t7QJq/cREyLHTtSmUT6gQsweojg9WH2sYJqZK9SswTu6jrscO6D1G5v5vYZ9ru/eq85lXeZQ==
+  dependencies:
+    kdbush "^4.0.2"
+
 supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.npmjs.org/supports-color/-/supports-color-5.5.0.tgz"
@@ -5188,7 +5215,7 @@ vue-tsc@^0.39.5:
     "@volar/vue-language-core" "0.39.5"
     "@volar/vue-typescript" "0.39.5"
 
-"vue@^2.6.0 || ^3.2.0", "vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.0.11, vue@^3.2.0, vue@^3.2.25, vue@^3.2.37, "vue@> 3.0.0", "vue@2 || 3", vue@3.3.5, vue@3.x:
+"vue@^2.6.0 || ^3.2.0", "vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", vue@^3, vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.0.11, vue@^3.2.0, vue@^3.2.25, vue@^3.2.37, "vue@> 3.0.0", "vue@2 || 3", vue@3.3.5, vue@3.x:
   version "3.3.5"
   resolved "https://registry.npmjs.org/vue/-/vue-3.3.5.tgz"
   integrity sha512-xYpLEGb25yYU1ul9ZhCcavNZ4YW6PS7YTDdDAd0yc/3w69Tra2BwY4EpKguKddfD56QApXQ17XHq+fJJwEP+UQ==
@@ -5204,6 +5231,15 @@ vue3-apexcharts@^1.4.1:
   resolved "https://registry.npmjs.org/vue3-apexcharts/-/vue3-apexcharts-1.4.4.tgz"
   integrity sha512-TH89uZrxGjaDvkaYAISvj8+k6Bf1rUKFillc8oJirs5XZEPiwM1ELKZQ786wz0rfPqkSHHny2lqqUCK7Rw+LcQ==
 
+vue3-google-map@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.npmjs.org/vue3-google-map/-/vue3-google-map-0.18.0.tgz"
+  integrity sha512-dhDlXK5XxKxH3Mj6n6C7y99M5LRwPDHlgGWgfLkmzVMpwlxBhaSxDhSTaduAFUjeHVusEfYdPxJSSP7yPJr8sg==
+  dependencies:
+    "@googlemaps/js-api-loader" "^1.16.2"
+    "@googlemaps/markerclusterer" "^2.4.0"
+    fast-deep-equal "^3.1.3"
+
 vue3-perfect-scrollbar@^1.6.0:
   version "1.6.1"
   resolved "https://registry.npmjs.org/vue3-perfect-scrollbar/-/vue3-perfect-scrollbar-1.6.1.tgz"
@@ -5213,10 +5249,10 @@ vue3-perfect-scrollbar@^1.6.0:
     perfect-scrollbar "^1.5.5"
     postcss-import "^12.0.0"
 
-vuetify@^3.0.0-beta.4, "vuetify@npm:@vuetify/nightly@3.3.0-master.2023-05-21":
-  version "3.3.0-master.2023-05-21"
-  resolved "https://registry.npmjs.org/@vuetify/nightly/-/nightly-3.3.0-master.2023-05-21.tgz"
-  integrity sha512-n7nkCuJAzzU6kOI0fKHOC9jeCB6nXpp2svxu0B1SbgWWuZiENu/G1a1S6tRUSiQqvAvTPrmEtewYKN1MeZ2XSg==
+vuetify@^3.0.0-beta.4, vuetify@^3.3.23:
+  version "3.3.23"
+  resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.23.tgz"
+  integrity sha512-EVEFvDyKr/HK2+hQJyhQSjIDULDaBi9vfgAAB0ekm+2Tvc8AkaDwb7VK44R2eilGFGpju6iN52FV7Uasj8SmIg==
 
 webfontloader@^1.6.28:
   version "1.6.28"

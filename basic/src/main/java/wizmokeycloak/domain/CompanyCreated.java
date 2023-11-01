@@ -14,7 +14,8 @@ public class CompanyCreated extends AbstractEvent {
     private String code;
     private String name;
     private String industry;
-    private Date foundedDate;
+    private LocalDate foundedDate;
+    private Long codeNum;
 
     public CompanyCreated(Company aggregate) {
         super(aggregate);

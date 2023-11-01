@@ -31,6 +31,9 @@
             value : Object,
             label : String, 
         },
+        data: () => ({
+            ph:{}
+        }),
         created(){
             this.value = this.modelValue
             if(!this.value) {

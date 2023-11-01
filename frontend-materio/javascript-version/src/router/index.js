@@ -9,6 +9,11 @@ const router = createRouter({
         name: 'companies',
         component: () => import('../views/components/ui/CompanyGrid.vue'),
     },
+    {
+      path: '/sales',
+      name: 'salesOrders',
+      component: () => import('../views/components/ui/SalesOrderGrid.vue'),
+    },
     ...setupLayouts(routes),
   ],
   scrollBehavior() {

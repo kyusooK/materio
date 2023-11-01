@@ -1,8 +1,7 @@
 <template>
     <div>
-        <v-text-field :label="label" v-model="searchKeyword"></v-text-field>
         <v-combobox
-            :items="list"
+            :items="filteredList"
             :item-text="nameField"
             :item-value="idField"
             :label="label"
@@ -15,10 +14,10 @@
 </template>
 
 <script>
-import BaseRepository from '../../repository/BaseRepository';
-const axios = require('axios').default;
+import BaseRepository from '../repository/BaseRepository';
+import axios from 'axios'
 
-var _ = require('lodash');
+import _ from'lodash';
 
 export default {
     name: 'BasePicker',
@@ -58,6 +57,11 @@ export default {
             this.fillSelections()
         }
     },
+    computed: {
+        filteredList() {
+            return this.list.map(item => item[this.nameField]);
+        }
+    },
     watch:{
         "selected": {
             handler: _.debounce(async function () {
@@ -92,10 +96,10 @@ export default {
                 val[this.idField] = id
                 val = Object.assign({}, val)
                 
-                this.$emit('input', val);
+                this.$emit("update:modelValue", val);
                 this.$emit('selected', val)
             } else {
-                this.$emit('input', null);
+                this.$emit('update:modelValue', null);
                 this.$emit('selected', null)
             }
         },

@@ -22,10 +22,18 @@ public class Company {
 
     private String industry;
 
-    private Date foundedDate;
+    private LocalDate foundedDate;
+
+    private Long codeNum;
 
     @Embedded
     private Photo photo;
+
+    @Embedded
+    private Address address;
+
+    @Embedded
+    private Weather weather;
 
     @PostPersist
     public void onPostPersist() {

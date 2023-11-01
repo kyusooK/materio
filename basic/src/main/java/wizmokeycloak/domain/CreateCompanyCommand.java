@@ -10,4 +10,6 @@ public class CreateCompanyCommand {
     private String name;
     private String industry;
     private String foundedDate;
+    
+    
 }

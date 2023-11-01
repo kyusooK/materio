@@ -1,21 +1,17 @@
 <template>
     <div style="margin: 0 -15px 0 -15px;">
-        <v-card-title>
-            {{label}}
+        <v-card-title v-if="inList">
+            PaymentType: {{payment.paymentType }}/Amount: {{payment.amount }}
         </v-card-title>
-        <v-card-text v-if="payment">
+        <v-card-text v-if="!inList">
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="PaymentType" v-model="payment.paymentType"/>
             </div>
-            <div v-else>
-                PaymentType :  {{payment.paymentType }}
-            </div>
+            
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field type="number" label="Amount" v-model="payment.amount"/>
             </div>
-            <div v-else>
-                Amount :  {{payment.amount }}
-            </div>
+            
         </v-card-text>
     </div>
 </template>
@@ -27,6 +23,7 @@
             editMode: Boolean,
             modelValue : Object,
             label : String,
+            inList : Boolean
         },
         data: () => ({
             payment:{}

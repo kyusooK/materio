@@ -33,7 +33,7 @@
                         OK
                     </v-btn>
                 </v-date-picker>
-            </VMenu>
+            </v-menu>
         </div>
         <div v-else>
             \{{label}} :  \{{value}}
