@@ -1,13 +1,10 @@
 <template>
     <div style="margin: -7px -15px 0 -15px;" :style="editMode ? '':'width: 200px;'">
-        <v-card-title v-if="editMode">
-            {{label}}
-        </v-card-title>
-        <v-card-title  v-if="!editMode">
-            Today's Weather
+        <v-card-title  v-if="inList" v-model="weather" style="font-size: 13px;">
+            온도 {{ weather.degree }}도/풍속 {{ weather.wind }}km/h/강수확률 {{ weather.precipitation }}
         </v-card-title>
 
-        <v-card-text v-if="weather">
+        <v-card-text v-if="!inList">
             <div v-if="editMode">
                 <v-text-field type="number" label="Degree" v-model="weather.degree"/>
             </div>
@@ -89,7 +86,7 @@
         },
         watch: {
             weather(newVal) {
-                this.$emit('update:modelValue', newVal);
+                this.$emit("update:modelValue", newVal);
             },
         },
     }

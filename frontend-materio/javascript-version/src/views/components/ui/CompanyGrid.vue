@@ -22,8 +22,8 @@
                               <th>id</th>
                               <th>NAME</th>
                               <th>INDUSTRY</th>
-                              <th>FOUNDEDDATE</th>
-                              <th>PHOTO</th>
+                              <th>CODENUM</th>
+                              <th>WEHATER</th>
                               <th></th>
                           </tr>
                       </thead>
@@ -32,7 +32,11 @@
                               <td class="font-semibold">#{{ idx + 1 }}</td>
                               <td class="whitespace-nowrap">{{val.name}}</td>
                               <td class="whitespace-nowrap">{{val.industry}}</td>
-                              <td class="whitespace-nowrap">{{val.foundedDate}}</td>
+                              <td class="whitespace-nowrap">{{val.codeNum}}</td>
+                              <td class="whitespace-nowrap">
+                                <Weather :editMode="false" :inList="true" v-model="val.weather"></Weather>
+                              </td>
+                              <td class="whitespace-nowrap"></td>
                               <td class="whitespace-nowrap">
                                   <Icon icon="mi:delete" @click="deleteRow(val)" />
                               </td>
@@ -65,6 +69,7 @@
                           <Company :offline="offline"
                               :isNew="!value.idx"
                               :editMode="true"
+                              :inList="false"
                               v-model="newValue"
                               @add="append"
                           />
@@ -101,6 +106,7 @@
 import BaseGrid from '../base-ui/BaseGrid.vue'
 import Company from './Company.vue';
 import DrawerContent from '../../../layouts/components/DrawerContent.vue';
+import Weather from '../vo/Weather.vue'
 
 
 // import UserProfile from '../../../layouts/components/UserProfile.vue'
@@ -113,6 +119,7 @@ export default {
     components:{
         Company,
         DrawerContent,
+        Weather
     },
     data: () => ({
         path: "companies",

@@ -1,9 +1,9 @@
 <template>
     <div style="margin: 0 -15px 0 -15px;">
-        <v-card-title  v-if="editMode">
-            {{label}}
+        <v-card-title  v-if="inList">
+            {{address.country }} / {{address.state }} {{address.city }}  {{address.street }} ({{address.zipcode }})
         </v-card-title>
-        <v-card-text v-if="address">
+        <v-card-text v-if="inList">
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="Country" v-model="address.country" />
             </div>
@@ -20,7 +20,7 @@
                 <v-text-field label="Zipcode" v-model="address.zipcode" />
             </div>
 
-            <div v-if="!editMode">
+            <div v-if="!inList">
                 <p style="font-family:sans-serif; font-weight:bold; font-size:15px">{{address.country }} / {{address.state }} {{address.city }}  {{address.street }} ({{address.zipcode }})</p>
                 <v-divider></v-divider><br>
                 <GoogleMap
@@ -56,6 +56,7 @@
             editMode: Boolean,
             modelValue : Object,
             label : String,
+            inList: Boolean
         },
         data: () => ({
             latitude: 37.5666805,

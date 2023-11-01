@@ -1,16 +1,16 @@
 <template>
     <div style="margin: 0 -15px 0 -15px;">
-        <v-card-title v-if="editMode">
-            {{label}}
+        <v-card-title v-if="inList">
+            {{money.amount}} {{money.currency}} 
         </v-card-title>
-        <v-card-text v-if="money">
+        <v-card-text v-if="!inList">
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field type="number" label="Amount" v-model="money.amount"/>
             </div>
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="Currency" v-model="money.currency"/>
             </div>
-            <div v-else>
+            <!-- <div v-else>
                 <v-card
                     class="mx-auto"
                     color="orange"
@@ -20,7 +20,7 @@
                     style="padding:10px 15px 10px 15px; font-weight:500; font-size:20px; text-align:center;"> 
                     {{money.amount}} {{money.currency}} 
                 </v-card>
-            </div>
+            </div> -->
         </v-card-text>
     </div>
 </template>
@@ -32,6 +32,7 @@
             editMode: Boolean,
             modelValue : Object,
             label : String,
+            inList : Boolean
         },
         data: () => ({
             money:{}

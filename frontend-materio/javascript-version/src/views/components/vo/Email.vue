@@ -1,27 +1,19 @@
 <template>
     <div style="margin: 0 -15px 0 -15px;">
-        <v-card-title>
-            {{label}}
+        <v-card-title v-if="inList" >
+            Address: {{email.address }} / Subject: {{email.subject }} / Content: {{email.content }}
         </v-card-title>
-        <v-card-text v-if="email">
+        <v-card-text v-if="!inList">
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="Address" v-model="email.address"/>
-            </div>
-            <div v-else>
-                Address :  {{email.address }}
             </div>
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="Subject" v-model="email.subject"/>
             </div>
-            <div v-else>
-                Subject :  {{email.subject }}
-            </div>
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-text-field label="Content" v-model="email.content"/>
             </div>
-            <div v-else>
-                Content :  {{email.content }}
-            </div>
+            
         </v-card-text>
     </div>
 </template>
@@ -32,8 +24,9 @@
         name:"Email",
         props: {
             editMode: Boolean,
-            value : Object,
+            modelValue : Object,
             label : String,
+            inList : Boolean
         },
         data: () => ({
             email:{}
