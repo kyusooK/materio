@@ -20,6 +20,6 @@ public class SalesItem {
 
     @Embedded
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private ProductId productId;
+    private CompanyId companyId;
 }
 //>>> DDD / Value Object

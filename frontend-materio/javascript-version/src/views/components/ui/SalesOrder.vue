@@ -5,6 +5,7 @@
         <String label="수주상태" v-model="value.status" :editMode="editMode"/>
         <SalesType offline label="수주유형" v-model="value.salesType" :editMode="editMode" @change="change"/>
         <CompanyId offline label="회사명" v-model="value.companyId" :editMode="editMode" @change="change"/>
+        <SalesItemDetailGrid label="SalesItems" offline v-model="value.salesItem" :editMode="editMode" @change="change"/>
 
         <v-divider class="border-opacity-100 my-divider"></v-divider>
         <v-layout row justify-end>
@@ -26,6 +27,7 @@ import BaseEntity from '../base-ui/BaseEntity.vue'
 import String from '../primitives/String.vue'
 import CompanyId from '../CompanyId.vue'
 import SalesType from '../SalesType.vue'
+import SalesItemDetailGrid from './SalesItemDetailGrid.vue'
 
 export default {
     name: 'SalesOrder',
@@ -33,7 +35,8 @@ export default {
     components:{
         String,
         CompanyId,
-        SalesType
+        SalesType,
+        SalesItemDetailGrid
     },
     
     data: () => ({

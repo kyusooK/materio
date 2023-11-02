@@ -14,7 +14,7 @@
                       <v-icon small style="margin-left: -5px;">mdi-plus</v-icon>등록
                   </v-btn>
               </div>
-              <div class="mb-5 text-lg font-bold">Recent Transactions</div>
+              <div class="mb-5 text-lg font-bold"></div>
               <div class="table-responsive">
                   <v-table>
                       <thead>

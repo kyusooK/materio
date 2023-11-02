@@ -103,7 +103,7 @@ export default {
             }
         },
         change() {
-            this.$emit('input', this.value);
+            this.$emit("update:modelValue", this.value);
         },
         closeDialog() {
             this.openDialog = false;

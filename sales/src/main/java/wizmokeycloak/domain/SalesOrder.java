@@ -24,7 +24,7 @@ public class SalesOrder {
     private String status;
 
     @ElementCollection
-    private List<SalesItems> salesItems;
+    private List<SalesItem> salesItem;
 
     private SalesType salesType;
 

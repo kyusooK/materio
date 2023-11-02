@@ -14,11 +14,11 @@
                       <v-icon small style="margin-left: -5px;">mdi-plus</v-icon>등록
                   </v-btn>
               </div>
-              <div class="mb-5 text-lg font-bold">Recent Transactions</div>
+              <div class="mb-5 text-lg font-bold"></div>
               <div class="table-responsive">
                   <v-table>
                       <thead>
-                          <tr >
+                          <tr>
                               <th>id</th>
                               <th>SalesPerson</th>
                               <th>Status</th>
@@ -31,7 +31,7 @@
                           <tr v-for="(val, idx) in value" :key="val" @click="changeSelectedRow(val)">
                               <td class="font-semibold">#{{ idx + 1 }}</td>
                               <td class="whitespace-nowrap">{{val.salesPerson}}</td>
-                              <td class="whitespace-nowrap">{{val.salesStatus}}</td>
+                              <td class="whitespace-nowrap">{{val.status}}</td>
                               <td class="whitespace-nowrap">{{val.salesType}}</td>
                               <td class="whitespace-nowrap">
                                 <CompanyId :editMode="false" v-model="val.companyId"></CompanyId>
@@ -42,7 +42,8 @@
                           </tr>
                       </tbody>
                   </v-table>
-              </div>
+                </div>
+                <SalesItemDetailGrid label="salesItems" offline v-if="selectedRow" v-model="selectedRow.salesItem" :selectedRow="selectedRow"/>
           </div>
           <v-col>
               <v-dialog
@@ -106,6 +107,7 @@ import BaseGrid from '../base-ui/BaseGrid.vue'
 import SalesOrder from './SalesOrder.vue';
 import DrawerContent from '../../../layouts/components/DrawerContent.vue';
 import CompanyId from '../CompanyId.vue'
+import SalesItemDetailGrid from './SalesItemDetailGrid.vue'
 
 
 // import UserProfile from '../../../layouts/components/UserProfile.vue'
@@ -118,7 +120,8 @@ export default {
     components:{
         SalesOrder,
         DrawerContent,
-        CompanyId
+        CompanyId,
+        SalesItemDetailGrid
     },
     data: () => ({
         path: "salesOrders",
