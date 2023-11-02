@@ -1,5 +1,5 @@
 <template>
-    <div class="panel">
+    <div class="panel" style="margin-top: 40px;">
         <div class="label-title">{{label}}</div>
         <div class="table-responsive">
             <v-btn v-if="editMode" @click="addDetailRow()">추가</v-btn>
