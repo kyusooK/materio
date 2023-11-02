@@ -26,7 +26,7 @@ public class CompanyController {
         produces = "application/json;charset=UTF-8"
     )
     public Company createCompany(
-        @PathVariable(value = "id") String id,
+        @PathVariable(value = "id") Long id,
         @RequestBody CreateCompanyCommand createCompanyCommand,
         HttpServletRequest request,
         HttpServletResponse response

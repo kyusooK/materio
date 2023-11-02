@@ -11,7 +11,7 @@ import wizmokeycloak.domain.*;
 //<<< PoEAA / Repository
 @RepositoryRestResource(collectionResourceRel = "companies", path = "companies")
 public interface CompanyRepository
-    extends PagingAndSortingRepository<Company, String> {
+    extends PagingAndSortingRepository<Company, Long> {
     @Query(
         value = "select company " +
         "from Company company " +

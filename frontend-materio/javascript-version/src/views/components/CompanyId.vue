@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <BasePicker v-if="editMode" searchApiPath="companies/search/findByCompanyQuery" searchParameterName="name"  idField="code" nameField="name" path="companies" label="CompanyId" v-model="value" @selected="pick" :editMode="editMode" />
-        <div v-else style="height:100%">
-            <span>{{ value && value.name ? value.name : '' }}</span>
-        </div>
-    </div>
+<div>
+<BasePicker v-if="editMode" searchApiPath="companies/search/findByCompanyQuery" searchParameterName="name"  idField="id" nameField="name" path="companies" label="CompanyId" v-model="value" @selected="pick" :editMode="editMode" />
+<div v-else style="height:100%">
+<span>{{ value && value.name ? value.name : '' }}</span>
+</div>
+</div>
 
 </template>
 
@@ -30,6 +30,7 @@ export default {
         },
     },
     async created(){
+        this.value = this.modelValue
         if (this.value && this.value.id !== undefined) {
             this.value = await this.repository.findById(this.value.id)
         }

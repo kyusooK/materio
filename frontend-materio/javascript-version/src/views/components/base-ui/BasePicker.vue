@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <v-combobox
-            :items="filteredList"
-            :item-text="nameField"
-            :item-value="idField"
-            :label="label"
-            return-object
-            v-model="selected"
-            @change="select"
-            solo
-        ></v-combobox>
-    </div>
+<div>
+<v-combobox
+:items="filteredList"
+:item-text="nameField"
+:item-value="idField"
+:label="label"
+return-object
+v-model="selected"
+@change="select"
+solo
+></v-combobox>
+</div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
     name: 'BasePicker',
     components:{},
     props: {
-        value: [String, Object, Array, Number, Boolean],
+        modelValue: [String, Object, Array, Number, Boolean],
         editMode: Boolean,
         label: String,
         path: String,
@@ -38,18 +38,18 @@ export default {
         referenceValue: null,
         repository: null,
         searchKeyword:null,
+        value: {}
     }),
     async created() {
         var me = this;
         this.repository = new BaseRepository(axios, this.path)
 
         if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
-            
+
             var id = me.value[me.idField];
             var tmpValue = await this.repository.findById(id)
             if(tmpValue.data) {
                 var val = tmpValue.data
-                
                 me.referenceValue = val
             }
         }
@@ -63,26 +63,33 @@ export default {
         }
     },
     watch:{
-        "selected": {
-            handler: _.debounce(async function () {
-                
-            }, 500),
-            immediate: true 
-        },
-        "searchKeyword": {
-            deep: true,
-            handler: _.debounce (async function(){
-                var me = this;
-                var temp = null
-                let query = {
-                    apiPath: me.searchApiPath,
-                    parameters: {}
-                };
-                query.parameters[me.searchParameterName] = me.searchKeyword;
-                temp = await me.repository.find(query);
-                me.list = temp;
-            }, 500),
+    "selected": {
+        handler: _.debounce(async function (newVal) {
+            if(newVal){
+                var findNameField = this.nameField
+                for(var i = 0; i < this.list.length; i++){
+                    if(this.list[i][findNameField] == newVal){
+                    this.select(this.list[i])
+                }
+            }
         }
+    }, 500),
+    immediate: true 
+    },
+    // "searchKeyword": {
+    //     deep: true,
+    //     handler: _.debounce (async function(){
+    //         var me = this;
+    //         var temp = null
+    //         let query = {
+    //             apiPath: me.searchApiPath,
+    //             parameters: {}
+    //         };
+    //         query.parameters[me.searchParameterName] = me.searchKeyword;
+    //         temp = await me.repository.find(query);
+    //         me.list = temp;
+    //     }, 500),
+    // }
     },
     methods: {
         async fillSelections(){
@@ -95,7 +102,7 @@ export default {
                 var id = uriParts.pop();
                 val[this.idField] = id
                 val = Object.assign({}, val)
-                
+
                 this.$emit("update:modelValue", val);
                 this.$emit('selected', val)
             } else {
@@ -103,11 +110,11 @@ export default {
                 this.$emit('selected', null)
             }
         },
-    },
+},
 };
 </script>
 <style>
 .my-combobox div {
-    min-height: 24px !important;
+min-height: 24px !important;
 }
 </style>

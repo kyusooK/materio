@@ -29,11 +29,12 @@ export default {
     },
     data: () => ({
         selections : ["PO","SA","PM",],
+
     }),
     async created() {
         this.value = this.modelValue
         if(!this.value) {
-            this.value = this.salestypeList[0];
+            this.value = [];
         }
     },
     watch: {
