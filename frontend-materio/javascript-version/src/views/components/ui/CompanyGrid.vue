@@ -1,4 +1,14 @@
 <template>
+    <v-snackbar
+        v-model="snackbar.status"
+        :timeout="snackbar.timeout"
+        :color="snackbar.color"
+    >
+        {{ snackbar.text }}
+        <v-btn style="margin-left: 80px;" text @click="snackbar.status = false">
+            Close
+        </v-btn>
+    </v-snackbar>
     <v-col :cols="2">
       <DrawerContent/>
     </v-col>
@@ -6,14 +16,14 @@
         <v-row>
             <!-- <UserProfile style="right: 2px;"/> -->
         </v-row>
-      <div style="max-height:80vh; margin-top: 90px;">
-          <!-- Recent Transactions -->
-          <div class="panel">
-              <div class="gs-bundle-of-buttons" style="max-height:10vh;">
-                  <v-btn @click="addNewRow" @class="contrast-primary-text" small color="primary">
-                      <v-icon small style="margin-left: -5px;">mdi-plus</v-icon>등록
-                  </v-btn>
-              </div>
+        <div style="max-height:80vh; margin-top: 90px;">
+            <div class="panel">
+                <div class="gs-bundle-of-buttons" style="max-height:10vh;">
+                    <v-btn @click="addNewRow" @class="contrast-primary-text" small color="primary">
+                        <v-icon small style="margin-left: -5px;">mdi-plus</v-icon>등록
+                    </v-btn>
+                </div>
+                <CompanyQuery @search="search"></CompanyQuery>
               <div class="mb-5 text-lg font-bold"></div>
               <div class="table-responsive">
                   <v-table>
@@ -102,12 +112,11 @@
 </template>
 
 <script>
-
 import BaseGrid from '../base-ui/BaseGrid.vue'
 import Company from './Company.vue';
 import DrawerContent from '../../../layouts/components/DrawerContent.vue';
 import Weather from '../vo/Weather.vue'
-
+import CompanyQuery from '../CompanyQuery.vue'
 
 // import UserProfile from '../../../layouts/components/UserProfile.vue'
 import { ref } from 'vue';
@@ -119,7 +128,8 @@ export default {
     components:{
         Company,
         DrawerContent,
-        Weather
+        Weather,
+        CompanyQuery,
     },
     data: () => ({
         path: "companies",

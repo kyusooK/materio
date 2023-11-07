@@ -36,7 +36,7 @@ export default {
     components:{
         String,
         Number,
-        Weather
+        Weather,
     },
     
     data: () => ({

@@ -1,50 +1,40 @@
 <template>
     <div>
         <div v-if="editMode">
-            <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                :return-value.sync="date"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
+            <v-text-field
+                v-bind="attrs"
+                v-model="date"
+                :label="label"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-on="on"
+            ></v-text-field>
+            <VDatePicker
+                    v-model="date"
+                    no-title
+                    scrollable
             >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
-                        v-bind="attrs"
-                        v-model="date"
-                        :label="label"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-on="on"
-                    ></v-text-field>
-                </template>
-                <v-date-picker
-                        v-model="date"
-                        no-title
-                        scrollable
-                >
-                    <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="resetDate()">
-                        Reset
-                    </v-btn>
-                    <v-btn text color="primary" @click="setDate(date)">
-                        OK
-                    </v-btn>
-                </v-date-picker>
-            </v-menu>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="resetDate()">
+                    Reset
+                </v-btn>
+                <v-btn text color="primary" @click="setDate(date)">
+                    OK
+                </v-btn>
+            </VDatePicker>
         </div>
         <div v-else>
-            \{{label}} :  \{{value}}
+            {{label}} :  {{value}}
         </div>
     </div>
 </template>
 
-<script>  
+<script>
+import { VDatePicker } from 'vuetify/lib/labs/components.mjs'
     export default {
         name: 'Date',
         components:{
+            VDatePicker
         },
         props: {
             modelValue: Object,

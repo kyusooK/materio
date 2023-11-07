@@ -26,6 +26,12 @@ export default {
             updateCompanyDiagram: false,
             openDialog : false,
             value: {},
+            snackbar: {
+                status: false,
+                timeout: 5000,
+                text: '',
+                color: 'info',
+            },
         };
     },
     async created() {
@@ -109,6 +115,21 @@ export default {
             this.openDialog = false;
             this.$emit("update:editMode", false)
         },
+        error(e){
+            this.snackbar.status = true
+            this.snackbar.color = 'error'
+            if(e.response && e.response.data.message) {
+                this.snackbar.text = e.response.data.message
+            } else {
+                this.snackbar.text = e
+            }
+        },
+        success(msg){
+            this.snackbar.color= 'info'
+            this.snackbar.status = true
+            this.snackbar.text = msg
+
+        }
     },
 };
 

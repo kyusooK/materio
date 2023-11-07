@@ -5,6 +5,9 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
+      
+    },
+    {
         path: '/companies',
         name: 'companies',
         component: () => import('../views/components/ui/CompanyGrid.vue'),

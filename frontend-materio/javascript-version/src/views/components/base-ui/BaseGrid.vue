@@ -11,7 +11,7 @@ export default {
         flex: null,
         tick : true,
         openDialog : false,
-        selectedRow: {},
+        selectedRow: null,
         path: 'path',
         repository: null,
         menu: [],
@@ -43,6 +43,7 @@ export default {
             this.$nextTick(() => {
                 this.tick = true;
             });
+            this.success("등록에 성공 하였습니다.")
         },
         remove(value){
             var where = -1;

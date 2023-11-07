@@ -1,7 +1,10 @@
 <template>
-    <div style="margin: -7px -15px 0 -15px;" :style="editMode ? '':'width: 200px;'">
+    <div style="margin: -7px -15px 0 -15px;" :style="editMode ? '':'width: 210px;'">
         <v-card-title  v-if="inList" v-model="weather" style="font-size: 13px;">
-            온도 {{ weather.degree }}도/풍속 {{ weather.wind }}km/h/강수확률 {{ weather.precipitation }}
+            <div v-if="weather.degree == 0 && weather.degree == 0 && weather.wind == 0"/>
+            <div v-else>
+                온도 {{ weather.degree }}°/풍속 {{ weather.wind }}km/h/강수확률 {{ weather.precipitation }}%
+            </div>
         </v-card-title>
 
         <v-card-text v-if="!inList">

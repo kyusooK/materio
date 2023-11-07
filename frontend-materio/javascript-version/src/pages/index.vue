@@ -1,6 +1,5 @@
 <template>
   <v-app id="inspire">
-        <Snackbar/>
         <v-col cols="10" style="margin: 0px; padding: 0px;">
             <v-main>
                 <v-container v-if="urlPath" style="max-width:100vw !important;" class="py-8 px-6 mt-10" fluid>
